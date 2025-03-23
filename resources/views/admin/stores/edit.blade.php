@@ -126,14 +126,12 @@
             });
         }
 
-        // Hide suggestions when clicking elsewhere
         document.addEventListener('click', function(event) {
             if (!addressInput.contains(event.target) && !suggestionsContainer.contains(event.target)) {
                 suggestionsContainer.classList.add('hidden');
             }
         });
 
-        // Validate form before submission
         document.querySelector('form').addEventListener('submit', function(event) {
             if (!latitudeInput.value || !longitudeInput.value) {
                 event.preventDefault();

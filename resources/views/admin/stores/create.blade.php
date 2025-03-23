@@ -70,11 +70,9 @@
         const latitudeInput = document.getElementById('latitude');
         const longitudeInput = document.getElementById('longitude');
 
-        // Function to search for address suggestions
         addressInput.addEventListener('input', function() {
             clearTimeout(timer);
             
-            // Display the suggestions container
             suggestionsContainer.classList.remove('hidden');
             
             const query = this.value.trim();
@@ -84,18 +82,14 @@
                 return;
             }
             
-            // Add loading indicator
             suggestionsContainer.innerHTML = '<div class="p-2 text-gray-500">Searching...</div>';
             
-            // Debounce the API call
             timer = setTimeout(() => {
                 fetchAddressSuggestions(query);
             }, 500);
         });
 
-        // Function to fetch address suggestions
         function fetchAddressSuggestions(query) {
-            // Using Nominatim service for address search
             fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=5&addressdetails=1`, {
                 headers: {
                     'Accept': 'application/json',
@@ -130,14 +124,12 @@
             });
         }
 
-        // Hide suggestions when clicking elsewhere
         document.addEventListener('click', function(event) {
             if (!addressInput.contains(event.target) && !suggestionsContainer.contains(event.target)) {
                 suggestionsContainer.classList.add('hidden');
             }
         });
 
-        // Validate form before submission
         document.querySelector('form').addEventListener('submit', function(event) {
             if (!latitudeInput.value || !longitudeInput.value) {
                 event.preventDefault();

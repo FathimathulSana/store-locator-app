@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('welcome'); // Load the view for public users
+        return view('welcome'); 
     }
 
     public function getNearbyStores(Request $request)
